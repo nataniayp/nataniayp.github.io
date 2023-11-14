@@ -4,6 +4,9 @@ import './App.css';
 import { Home } from './pages/Home';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core';
 import { NavBar } from './components/NavBar';
+import { Portfolio } from './pages/Portfolio';
+import { Blog } from './pages/Blog';
+import { Contact } from './pages/Contact';
 
 const theme = createMuiTheme({
   palette: {
@@ -27,10 +30,13 @@ const theme = createMuiTheme({
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <NavBar />
       <Router>
+        <NavBar />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/portfolio" element={<Portfolio />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/contact" element={<Contact />} />
         </Routes>
       </Router>
     </ThemeProvider>

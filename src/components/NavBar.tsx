@@ -5,6 +5,7 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material";
+import { Link } from "react-router-dom";
 
 export const NavBar = () => {
   return (
@@ -21,10 +22,10 @@ export const NavBar = () => {
           color="black"
           marginRight={8}
         >
-          <Typography sx={{ fontWeight: 600 }}>Home</Typography>
-          <Typography sx={{ fontWeight: 600 }}>Portfolio</Typography>
-          <Typography sx={{ fontWeight: 600 }}>Blog</Typography>
-          <Typography sx={{ fontWeight: 600 }}>Contact</Typography>
+          <Typography style={{color: "inherit", textDecoration: "none"}} sx={{ fontWeight: 600 }} component={Link} to="/">Home</Typography>
+          <Typography style={{color: "inherit", textDecoration: "none"}} sx={{ fontWeight: 600 }} component={Link} to="/portfolio">Portfolio</Typography>
+          <Typography style={{color: "inherit", textDecoration: "none"}} sx={{ fontWeight: 600 }} component={Link} to="/blog">Blog</Typography>
+          <Typography style={{color: "inherit", textDecoration: "none"}} sx={{ fontWeight: 600 }} component={Link} to="/contact">Contact</Typography>
         </Stack>
       </Toolbar>
     </AppBar>
