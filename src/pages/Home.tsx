@@ -33,7 +33,7 @@ export const Home = () => {
           <Typography>This website is still work in progress.</Typography>
         </Box>
         <Box paddingLeft="1rem" paddingTop="1rem">
-          <img height="300em" width="300em" src={profilePicture} alt="profile-picture"/>
+          <img height="300em" width="300em" src={profilePicture} alt="profile"/>
         </Box>
       </Box>
       <Box
