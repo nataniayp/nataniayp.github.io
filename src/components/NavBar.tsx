@@ -1,16 +1,12 @@
 import React from "react";
 import {
   AppBar,
-  Box,
-  Container,
   Stack,
   Toolbar,
   Typography,
 } from "@mui/material";
-import { useTheme } from "@material-ui/core";
 
 export const NavBar = () => {
-  const theme = useTheme();
   return (
     <AppBar
       position="static"
