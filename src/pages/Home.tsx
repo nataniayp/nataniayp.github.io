@@ -30,6 +30,7 @@ export const Home = () => {
           >
             Hi, I am Natania.
           </Box>
+          <Typography>This website is still work in progress.</Typography>
         </Box>
         <Box paddingLeft="1rem" paddingTop="1rem">
           <img height="300em" width="300em" src={profilePicture} />
