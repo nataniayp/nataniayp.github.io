@@ -13,7 +13,11 @@ jobs:
       - name: Install
         working-directory: ${{github.workspace}}
         run: npm install
+      
+      - name: Build
+        working-directory: ${{github.workspace}}
+        run: npm run build
 
       - name: Deploy
         working-directory: ${{github.workspace}}
-        run: npm run deploy
+        run: gh-pages -b master -d build
