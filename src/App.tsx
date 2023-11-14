@@ -1,25 +1,40 @@
 import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import logo from './logo.svg';
 import './App.css';
+import { Home } from './pages/Home';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core';
+import { NavBar } from './components/NavBar';
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#00873d',
+      dark: '#004921',
+      light: '#97bfa9',
+    },
+    secondary: {
+      main: '#fb8d22',
+      dark: '#c46508',
+      light: '#fab673',
+    },
+  },
+  typography: {
+    // fontFamily: 'Helvetica Neue'
+  }
+})
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <NavBar />
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+        </Routes>
+      </Router>
+    </ThemeProvider>
   );
 }
 
