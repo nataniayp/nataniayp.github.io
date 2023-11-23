@@ -1,7 +1,6 @@
 import React from "react";
 import { Box, Container, Typography } from "@mui/material";
 import { useTheme } from "@material-ui/core";
-import "./Portfolio.css";
 
 export const Portfolio = () => {
   const theme = useTheme();
@@ -29,7 +28,9 @@ export const Portfolio = () => {
           >
             Hi, I am Natania.
           </Box>
-          <Typography>This Portfolio page is still work in progress.</Typography>
+          <Typography>
+            This Portfolio page is still work in progress.
+          </Typography>
         </Box>
       </Box>
     </Container>

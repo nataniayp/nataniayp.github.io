@@ -1,7 +1,6 @@
 import React from "react";
 import { Box, Container, Typography } from "@mui/material";
 import { useTheme } from "@material-ui/core";
-import "./Contact.css";
 
 export const Contact = () => {
   const theme = useTheme();

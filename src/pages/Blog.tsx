@@ -1,7 +1,6 @@
 import React from "react";
 import { Box, Container, Typography } from "@mui/material";
 import { useTheme } from "@material-ui/core";
-import "./Blog.css";
 
 export const Blog = () => {
   const theme = useTheme();

@@ -2,7 +2,45 @@ import React from "react";
 import { Box, Button, Container, Typography } from "@mui/material";
 import { useTheme } from "@material-ui/core";
 import profilePicture from "../assets/picture.jpg";
-import "./Home.css";
+import styled, { css } from "styled-components";
+import { Link } from "react-router-dom";
+
+const SBox = styled(Box)<{ bgColor: string }>`
+  margin-left: 4rem;
+  margin-right: 4rem;
+  margin-top: 8rem;
+  margin-bottom: 8rem;
+  padding: 3rem;
+  height: 28rem;
+  background-color: ${(props) => props.bgColor};
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 2rem;
+`;
+
+const SImg = styled.img`
+  border-radius: 50%;
+  object-fit: cover;
+  alt: profile;
+`;
+
+const SButton = styled(Button)<{ textColor: string }>`
+  ${(props) => css`
+    color: ${props.textColor};
+    font-size: 1.2em;
+    font-weight: 600;
+  `}
+`;
+
+const SHeader = styled(Box)<{ textColor: string }>`
+  ${(props) => css`
+    color: ${props.textColor};
+    font-size: 2em;
+    font-weight: 600;
+  `}
+`;
 
 export const Home = () => {
   const theme = useTheme();
@@ -33,67 +71,23 @@ export const Home = () => {
           <Typography>This website is still work in progress.</Typography>
         </Box>
         <Box paddingLeft="1rem" paddingTop="1rem">
-          <img height="300em" width="300em" src={profilePicture} alt="profile"/>
+          <SImg height="300em" width="300em" src={profilePicture} />
         </Box>
       </Box>
-      <Box
-        marginX="4rem"
-        marginY="8rem"
-        padding="3rem"
-        height="28rem"
-        bgcolor="#E24900"
-        display="flex"
-        flexDirection="column"
-        alignItems="center"
-        justifyContent="space-between"
-        borderRadius="2rem"
-      >
-        <Box
-          sx={{
-            fontWeight: 600,
-            fontSize: "2em",
-            color: "#FFE9D9",
-          }}
-        >
-          Portfolio
-        </Box>
+      <SBox bgColor="#E24900">
+        <SHeader textColor="#FFE9D9">Portfolio</SHeader>
         <Box>Images</Box>
-        <Button
-          variant="text"
-          sx={{ color: "#FFE9D9", fontSize: "1.2em", fontWeight: 600 }}
-        >
+        <SButton textColor="#FFE9D9" href={"/portfolio"}>
           MORE
-        </Button>
-      </Box>
-      <Box
-        marginX="4rem"
-        marginY="8rem"
-        padding="3rem"
-        height="28rem"
-        bgcolor="#FFE9D9"
-        display="flex"
-        flexDirection="column"
-        alignItems="center"
-        justifyContent="space-between"
-        borderRadius="2rem"
-      >
-        <Box
-          sx={{
-            fontWeight: 600,
-            fontSize: "2em",
-            color: "#014920",
-          }}
-        >
-          Blog
-        </Box>
+        </SButton>
+      </SBox>
+      <SBox bgColor="#FFE9D9">
+        <SHeader textColor="#014920">Blog</SHeader>
         <Box>Images</Box>
-        <Button
-          variant="text"
-          sx={{ color: "#014920", fontSize: "1.2em", fontWeight: 600 }}
-        >
+        <SButton textColor="#014920" href={"/blog"}>
           MORE
-        </Button>
-      </Box>
+        </SButton>
+      </SBox>
     </Container>
   );
 };
