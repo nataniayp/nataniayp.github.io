@@ -3,7 +3,6 @@ import { Box, Button, Container, Typography } from "@mui/material";
 import { useTheme } from "@material-ui/core";
 import profilePicture from "../assets/picture.jpg";
 import styled, { css } from "styled-components";
-import { Link } from "react-router-dom";
 
 const SBox = styled(Box)<{ bgColor: string }>`
   margin-left: 4rem;

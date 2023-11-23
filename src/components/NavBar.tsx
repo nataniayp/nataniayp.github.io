@@ -1,11 +1,25 @@
 import React from "react";
-import {
-  AppBar,
-  Stack,
-  Toolbar,
-  Typography,
-} from "@mui/material";
+import { AppBar, Stack, Toolbar, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
+import styled, { css } from "styled-components";
+
+const STypography = styled(Typography)`
+  ${(_) => css`
+    color: inherit;
+    text-decoration: none;
+    font-weight: 600;
+    &:hover {
+      text-decoration: underline;
+    }
+  `}
+`;
+
+const pages = [
+  { to: "/", label: "Home" },
+  { to: "/portfolio", label: "Portfolio" },
+  { to: "/blog", label: "Blog" },
+  { to: "/contact", label: "Contact" },
+];
 
 export const NavBar = () => {
   return (
@@ -22,10 +36,11 @@ export const NavBar = () => {
           color="black"
           marginRight={8}
         >
-          <Typography style={{color: "inherit", textDecoration: "none"}} sx={{ fontWeight: 600 }} component={Link} to="/">Home</Typography>
-          <Typography style={{color: "inherit", textDecoration: "none"}} sx={{ fontWeight: 600 }} component={Link} to="/portfolio">Portfolio</Typography>
-          <Typography style={{color: "inherit", textDecoration: "none"}} sx={{ fontWeight: 600 }} component={Link} to="/blog">Blog</Typography>
-          <Typography style={{color: "inherit", textDecoration: "none"}} sx={{ fontWeight: 600 }} component={Link} to="/contact">Contact</Typography>
+          {pages.map((page) => (
+            <STypography key={page.to} component={Link} to={page.to}>
+              {page.label}
+            </STypography>
+          ))}
         </Stack>
       </Toolbar>
     </AppBar>
