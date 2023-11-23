@@ -2,6 +2,7 @@ import React from "react";
 import { Box, Button, Container, Typography } from "@mui/material";
 import { useTheme } from "@material-ui/core";
 import profilePicture from "../assets/picture.jpg";
+import { Link } from "react-router-dom";
 import styled, { css } from "styled-components";
 
 const SBox = styled(Box)<{ bgColor: string }>`
@@ -30,6 +31,10 @@ const SButton = styled(Button)<{ textColor: string }>`
     color: ${props.textColor};
     font-size: 1.2em;
     font-weight: 600;
+    &:hover {
+      background-color: transparent;
+      text-decoration: underline;
+    }
   `}
 `;
 
@@ -76,16 +81,20 @@ export const Home = () => {
       <SBox bgColor="#E24900">
         <SHeader textColor="#FFE9D9">Portfolio</SHeader>
         <Box>Images</Box>
-        <SButton textColor="#FFE9D9" href={"/portfolio"}>
-          MORE
-        </SButton>
+        <Link key="/portfolio" to="/portfolio">
+          <SButton disableRipple textColor="#FFE9D9">
+            MORE
+          </SButton>
+        </Link>
       </SBox>
       <SBox bgColor="#FFE9D9">
         <SHeader textColor="#014920">Blog</SHeader>
         <Box>Images</Box>
-        <SButton textColor="#014920" href={"/blog"}>
-          MORE
-        </SButton>
+        <Link key="/blog" to="/blog">
+          <SButton disableRipple textColor="#014920">
+            MORE
+          </SButton>
+        </Link>
       </SBox>
     </Container>
   );
