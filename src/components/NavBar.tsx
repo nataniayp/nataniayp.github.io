@@ -23,13 +23,11 @@ const pages = [
 
 export const NavBar = () => {
   return (
-    <AppBar
-      position="static"
-      sx={{ bgcolor: "transparent", boxShadow: "none" }}
-    >
+    <AppBar position="sticky" sx={{ bgcolor: "white", boxShadow: "none" }}>
       <Toolbar>
         <Stack
           marginTop={4}
+          marginBottom={3}
           spacing={8}
           direction={"row"}
           marginLeft={"auto"}

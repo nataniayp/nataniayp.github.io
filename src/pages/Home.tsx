@@ -1,48 +1,18 @@
 import React from "react";
-import { Box, Button, Container, Typography } from "@mui/material";
+import { Box, Container, Link, Typography } from "@mui/material";
 import { useTheme } from "@material-ui/core";
-import profilePicture from "../assets/picture.jpg";
-import { Link } from "react-router-dom";
+import profilePicture from "../assets/homepage.png";
+import keyboardPicture from "../assets/keyboard.png";
 import styled, { css } from "styled-components";
 
-const SBox = styled(Box)<{ bgColor: string }>`
-  margin-left: 4rem;
-  margin-right: 4rem;
-  margin-top: 8rem;
-  margin-bottom: 8rem;
-  padding: 3rem;
-  height: 28rem;
-  background-color: ${(props) => props.bgColor};
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  border-radius: 2rem;
-`;
-
 const SImg = styled.img`
-  border-radius: 50%;
   object-fit: cover;
   alt: profile;
 `;
 
-const SButton = styled(Button)<{ textColor: string }>`
+const SLink = styled(Link)<{ textColor: string }>`
   ${(props) => css`
     color: ${props.textColor};
-    font-size: 1.2em;
-    font-weight: 600;
-    &:hover {
-      background-color: transparent;
-      text-decoration: underline;
-    }
-  `}
-`;
-
-const SHeader = styled(Box)<{ textColor: string }>`
-  ${(props) => css`
-    color: ${props.textColor};
-    font-size: 2em;
-    font-weight: 600;
   `}
 `;
 
@@ -72,30 +42,41 @@ export const Home = () => {
           >
             Hi, I am Natania.
           </Box>
-          <Typography>This website is still work in progress.</Typography>
+          <Typography>
+            I like doing web development, like this website!
+          </Typography>
+          <Typography>
+            Click any of the tabs on top to find out more about me.
+          </Typography>
         </Box>
         <Box paddingLeft="1rem" paddingTop="1rem">
-          <SImg height="300em" width="300em" src={profilePicture} />
+          <SImg height="400em" width="400em" src={profilePicture} />
         </Box>
       </Box>
-      <SBox bgColor="#E24900">
-        <SHeader textColor="#FFE9D9">Portfolio</SHeader>
-        <Box>Images</Box>
-        <Link key="/portfolio" to="/portfolio">
-          <SButton disableRipple textColor="#FFE9D9">
-            MORE
-          </SButton>
-        </Link>
-      </SBox>
-      <SBox bgColor="#FFE9D9">
-        <SHeader textColor="#014920">Blog</SHeader>
-        <Box>Images</Box>
-        <Link key="/blog" to="/blog">
-          <SButton disableRipple textColor="#014920">
-            MORE
-          </SButton>
-        </Link>
-      </SBox>
+      {/* <Box display="flex" alignItems="center">
+        <SImg height="300em" src={keyboardPicture} />
+        <Box display="flex" flexDirection="column" marginLeft="32px">
+          <Typography>I play the keyboard.</Typography>
+          <Typography>
+            Currently, I am in{" "}
+            <SLink
+              textColor="#E24900"
+              underline="hover"
+              href="https://instagram.com/officiallyaight"
+            >
+              aight.
+            </SLink>{" "}
+            and{" "}
+            <SLink
+              textColor="#E24900"
+              underline="hover"
+              href="https://instagram.com/wearematb"
+            >
+              Marisa and the Baristas.
+            </SLink>
+          </Typography>
+        </Box>
+      </Box> */}
     </Container>
   );
 };
