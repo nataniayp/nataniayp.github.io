@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Box, Container, Typography } from "@mui/material";
-import { useTheme } from "@material-ui/core";
+import { useTheme } from "@mui/material/styles";
 import styled, { css } from "styled-components";
 import SendIcon from "@mui/icons-material/Send";
 
@@ -10,7 +10,6 @@ const STypography = styled(Typography)`
     margin-top: 12px;
     display: flex;
     align-items: center;
-    color: #004921;
     text-decoration: none;
     font-weight: 600;
     &:hover {
@@ -42,14 +41,22 @@ export const Contact = () => {
             sx={{
               fontWeight: 700,
               fontSize: "4rem",
-              color: theme.palette.primary.dark,
+              color: theme.palette.primary.main,
             }}
           >
             Let's connect!
           </Box>
-          <STypography component={Link} to={"mailto:natania.yovela@gmail.com"}>
+          <STypography
+            color={theme.palette.primary.main}
+            component={Link}
+            to={"mailto:natania.yovela@gmail.com"}
+          >
             <SendIcon
-              sx={{ color: "#004921", height: "12px", marginRight: "2px" }}
+              sx={{
+                color: theme.palette.primary.main,
+                height: "12px",
+                marginRight: "2px",
+              }}
             />
             SEND AN EMAIL
           </STypography>
