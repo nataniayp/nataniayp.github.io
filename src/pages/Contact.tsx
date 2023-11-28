@@ -1,6 +1,25 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Box, Container, Typography } from "@mui/material";
 import { useTheme } from "@material-ui/core";
+import styled, { css } from "styled-components";
+import SendIcon from "@mui/icons-material/Send";
+
+const STypography = styled(Typography)`
+  ${(_) => css`
+    margin-top: 12px;
+    display: flex;
+    align-items: center;
+    color: #004921;
+    text-decoration: none;
+    font-weight: 600;
+    &:hover {
+      text-decoration: underline;
+      background: none;
+      background-color: none;
+    }
+  `}
+`;
 
 export const Contact = () => {
   const theme = useTheme();
@@ -26,9 +45,14 @@ export const Contact = () => {
               color: theme.palette.primary.dark,
             }}
           >
-            Hi, I am Natania.
+            Let's connect!
           </Box>
-          <Typography>This Contact page is still work in progress.</Typography>
+          <STypography component={Link} to={"mailto:natania.yovela@gmail.com"}>
+            <SendIcon
+              sx={{ color: "#004921", height: "12px", marginRight: "2px" }}
+            />
+            SEND AN EMAIL
+          </STypography>
         </Box>
       </Box>
     </Container>
