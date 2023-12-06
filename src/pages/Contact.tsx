@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState, ChangeEvent } from "react";
 import { Link } from "react-router-dom";
-import { Box, Container, Typography } from "@mui/material";
+import { Box, Container, TextField, Typography } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import styled, { css } from "styled-components";
 import SendIcon from "@mui/icons-material/Send";
@@ -20,8 +20,34 @@ const STypography = styled(Typography)`
   `}
 `;
 
+function isValidEmail(email: string): boolean {
+  return /\S+@\S+\.\S+/.test(email);
+}
+
 export const Contact = () => {
   const theme = useTheme();
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [nessage, setMessage] = useState("");
+  const [emailError, setEmailError] = useState("");
+
+  const handleNameChange = (event: ChangeEvent<HTMLInputElement>): void => {
+    setName(event.target.value);
+  };
+
+  const handleEmailChange = (event: ChangeEvent<HTMLInputElement>): void => {
+    if (event.target.value && !isValidEmail(event.target.value)) {
+      setEmailError("Invalid email address");
+    } else {
+      setEmail(event.target.value);
+      setEmailError("");
+    }
+  };
+
+  const handleMessageChange = (event: ChangeEvent<HTMLInputElement>): void => {
+    setMessage(event.target.value);
+  };
+
   return (
     <Container>
       <Box
@@ -36,7 +62,7 @@ export const Contact = () => {
           alignItems: "center",
         }}
       >
-        <Box>
+        <Box display="flex" flexDirection={"column"} gap="24px">
           <Box
             sx={{
               fontWeight: 700,
@@ -46,6 +72,18 @@ export const Contact = () => {
           >
             Let's connect!
           </Box>
+          <TextField required label="Name" onChange={handleNameChange} />
+
+          <TextField
+            required
+            error={!!emailError}
+            label="Email Address"
+            onChange={handleEmailChange}
+            helperText={emailError}
+          />
+
+          <TextField multiline label="Message" onChange={handleMessageChange} />
+
           <STypography
             color={theme.palette.primary.main}
             component={Link}
@@ -58,7 +96,7 @@ export const Contact = () => {
                 marginRight: "2px",
               }}
             />
-            SEND AN EMAIL
+            Send
           </STypography>
         </Box>
       </Box>
