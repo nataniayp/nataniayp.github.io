@@ -6,10 +6,11 @@ import TimelineSeparator from "@mui/lab/TimelineSeparator";
 import TimelineConnector from "@mui/lab/TimelineConnector";
 import TimelineContent from "@mui/lab/TimelineContent";
 import TimelineDot from "@mui/lab/TimelineDot";
+import { useTheme } from "@mui/material/styles";
 import styled, { css } from "styled-components";
-const SHeader = styled(Box)<{ textColor: string }>`
+const SHeader = styled(Box)<{ textcolor: string }>`
   ${(props) => css`
-    color: ${props.textColor};
+    color: ${props.textcolor};
     font-size: 3em;
     font-weight: 600;
   `}
@@ -38,10 +39,10 @@ const DateBox = styled(Box)`
   `}
 `;
 
-const ContentBox = styled(Box)<{ textColor: string }>`
+const ContentBox = styled(Box)<{ textcolor: string }>`
   ${(props) => css`
     margin-left: 2em;
-    color: ${props.textColor ? props.textColor : "black"};
+    color: ${props.textcolor ? props.textcolor : "black"};
   `}
 `;
 
@@ -136,9 +137,10 @@ interface RTimelineProps {
 }
 
 const RTimeline: React.FC<RTimelineProps> = ({ color, title, dicts }) => {
+  const theme = useTheme();
   return (
     <SBox>
-      <SHeader textColor={color}>{title}</SHeader>
+      <SHeader textcolor={color}>{title}</SHeader>
       <SDivider color={color} />
       <Timeline
         sx={{
@@ -150,7 +152,7 @@ const RTimeline: React.FC<RTimelineProps> = ({ color, title, dicts }) => {
         }}
       >
         {dicts.map((exp) => (
-          <TimelineItem>
+          <TimelineItem key={exp.header}>
             <TimelineSeparator>
               <TimelineConnector
                 sx={{ backgroundColor: color, width: "1px" }}
@@ -167,11 +169,16 @@ const RTimeline: React.FC<RTimelineProps> = ({ color, title, dicts }) => {
                 alignSelf="start"
                 flexDirection="column"
               >
-                <ContentBox fontWeight={600} textColor="#014920">
+                <ContentBox
+                  fontWeight={600}
+                  textcolor={theme.palette.primary.main}
+                >
                   {exp.header}
                 </ContentBox>
-                {exp.content.split("\n").map((line: string) => (
-                  <ContentBox>- {line}</ContentBox>
+                {exp.content.split("\n").map((line: string, index: number) => (
+                  <ContentBox key={`${exp.header}-line-${index}`}>
+                    - {line}
+                  </ContentBox>
                 ))}
               </ContentBox>
             </STimelineContent>
@@ -183,10 +190,19 @@ const RTimeline: React.FC<RTimelineProps> = ({ color, title, dicts }) => {
 };
 
 export const Portfolio = () => {
+  const theme = useTheme();
   return (
     <Box marginX="10rem" marginTop="4rem">
-      <RTimeline color="#E24900" title="Experience" dicts={experiences} />
-      <RTimeline color="#F58621" title="Projects" dicts={projects} />
+      <RTimeline
+        color={theme.palette.secondary.main}
+        title="Experience"
+        dicts={experiences}
+      />
+      <RTimeline
+        color={theme.palette.secondary.light}
+        title="Projects"
+        dicts={projects}
+      />
     </Box>
   );
 };

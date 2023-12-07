@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Container, Typography } from "@mui/material";
-import { useTheme } from "@material-ui/core";
+import { useTheme } from "@mui/material/styles";
 
 export const Blog = () => {
   const theme = useTheme();
@@ -23,7 +23,7 @@ export const Blog = () => {
             sx={{
               fontWeight: 700,
               fontSize: "4rem",
-              color: theme.palette.primary.dark,
+              color: theme.palette.primary.main,
             }}
           >
             Hi, I am Natania.

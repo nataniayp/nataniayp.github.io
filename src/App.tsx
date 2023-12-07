@@ -2,27 +2,21 @@ import React from "react";
 import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 import { Home } from "./pages/Home";
-import { createMuiTheme, ThemeProvider } from "@material-ui/core";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { NavBar } from "./components/NavBar";
 import { Portfolio } from "./pages/Portfolio";
 import { Blog } from "./pages/Blog";
 import { Contact } from "./pages/Contact";
 
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     primary: {
-      main: "#00873d",
-      dark: "#004921",
-      light: "#97bfa9",
+      main: "#004921",
     },
     secondary: {
-      main: "#fb8d22",
-      dark: "#c46508",
-      light: "#fab673",
+      main: "#E24900",
+      light: "#F58621",
     },
-  },
-  typography: {
-    // fontFamily: 'Helvetica Neue'
   },
 });
 
