@@ -88,7 +88,12 @@ export const Contact = () => {
           axios
             .post(
               "https://personal-site-db.onrender.com/contacts",
-              contactMessage
+              contactMessage,
+              {
+                headers: {
+                  "custom-api-key": process.env.REACT_APP_DB_API_KEY,
+                },
+              }
             )
             .then((response) => {
               console.log(response.data);
