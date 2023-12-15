@@ -10,16 +10,10 @@ const SImg = styled.img`
   alt: profile;
 `;
 
-const SLink = styled(Link)<{ textColor: string }>`
-  ${(props) => css`
-    color: ${props.textColor};
-  `}
-`;
-
 export const Home = () => {
   const theme = useTheme();
-  const matches = useMediaQuery(theme.breakpoints.down("md"));
-  return matches ? (
+  const isMobile = useMediaQuery(theme.breakpoints.down("lg"));
+  return isMobile ? (
     <Container>
       <Box
         display="flex"

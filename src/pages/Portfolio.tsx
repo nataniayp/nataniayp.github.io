@@ -8,10 +8,12 @@ import TimelineContent from "@mui/lab/TimelineContent";
 import TimelineDot from "@mui/lab/TimelineDot";
 import { useTheme } from "@mui/material/styles";
 import styled, { css } from "styled-components";
-const SHeader = styled(Box)<{ textcolor: string }>`
+import useMediaQuery from "@mui/material/useMediaQuery";
+
+const SHeader = styled(Box)<{ isMobile: boolean; textcolor: string }>`
   ${(props) => css`
     color: ${props.textcolor};
-    font-size: 3em;
+    font-size: ${props.isMobile ? "24px" : "3em"};
     font-weight: 600;
   `}
 `;
@@ -24,34 +26,35 @@ const SDivider = styled(Divider)<{ color: string }>`
 `;
 
 const SBox = styled(Box)`
-  margin-top: 4em;
-  margin-bottom: 4em;
+  margin-top: 2em;
+  margin-bottom: 2em;
   justify-content: start;
 `;
 
-const DateBox = styled(Box)`
+const DateBox = styled(Box)<{ isMobile: boolean }>`
   ${(props) => css`
     margin-left: 0.5em;
     display: flex;
     flex-direction: column;
+    justify-content: ${props.isMobile ? "start" : "center"};
     align-items: center;
     font-weight: 600;
   `}
 `;
 
-const ContentBox = styled(Box)<{ textcolor: string }>`
+const ContentBox = styled(Box)<{ isMobile?: boolean; textcolor?: string }>`
   ${(props) => css`
-    margin-left: 2em;
+    margin-left: ${props.isMobile ? "8px" : "12px"};
     color: ${props.textcolor ? props.textcolor : "black"};
   `}
 `;
 
-const STimelineContent = styled(TimelineContent)`
+const STimelineContent = styled(TimelineContent)<{ isMobile: boolean }>`
   ${(props) => css`
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin-top: 2em;
+    margin-top: ${props.isMobile ? "4px" : "12px"};
     margin-bottom: 2em;
   `}
 `;
@@ -64,8 +67,11 @@ interface RDateBoxProps {
 const RDateBox: React.FC<RDateBoxProps> = ({ start, end }) => {
   const [startMonth, startYear] = start.split(" ");
   const [endMonth, endYear] = end.split(" ");
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("lg"));
+
   return (
-    <DateBox>
+    <DateBox isMobile={isMobile}>
       <Box display="flex" fontWeight={600}>
         {startMonth}
       </Box>
@@ -138,13 +144,17 @@ interface RTimelineProps {
 
 const RTimeline: React.FC<RTimelineProps> = ({ color, title, dicts }) => {
   const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("lg"));
+
   return (
     <SBox>
-      <SHeader textcolor={color}>{title}</SHeader>
+      <SHeader isMobile={isMobile} textcolor={color}>
+        {title}
+      </SHeader>
       <SDivider color={color} />
       <Timeline
         sx={{
-          px: "10em",
+          px: isMobile ? "2px" : "10em",
           [`& .${timelineItemClasses.root}:before`]: {
             flex: 0,
             padding: 0,
@@ -162,12 +172,13 @@ const RTimeline: React.FC<RTimelineProps> = ({ color, title, dicts }) => {
                 sx={{ backgroundColor: color, width: "1px" }}
               />
             </TimelineSeparator>
-            <STimelineContent>
+            <STimelineContent isMobile={isMobile}>
               <RDateBox start={exp.start} end={exp.end}></RDateBox>
               <ContentBox
                 display="flex"
                 alignSelf="start"
                 flexDirection="column"
+                isMobile={isMobile}
               >
                 <ContentBox
                   fontWeight={600}
@@ -191,8 +202,10 @@ const RTimeline: React.FC<RTimelineProps> = ({ color, title, dicts }) => {
 
 export const Portfolio = () => {
   const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("lg"));
+
   return (
-    <Box marginX="10rem" marginTop="4rem">
+    <Box marginX={isMobile ? "2rem" : "10rem"}>
       <RTimeline
         color={theme.palette.secondary.main}
         title="Experience"

@@ -1,10 +1,11 @@
 import React, { useState, ChangeEvent } from "react";
-import { Box, Container, TextField, Typography } from "@mui/material";
+import { Box, TextField, Typography } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import styled, { css } from "styled-components";
 import SendIcon from "@mui/icons-material/Send";
 import { LoadingButton } from "@mui/lab";
 import axios from "axios";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 const SLoadingButton = styled(LoadingButton)`
   ${(_) => css`
@@ -35,6 +36,7 @@ export const Contact = () => {
   const [loading, setLoading] = useState(false);
   const [emailError, setEmailError] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
+  const isMobile = useMediaQuery(theme.breakpoints.down("lg"));
 
   const handleNameChange = (event: ChangeEvent<HTMLInputElement>): void => {
     const newName = event.target.value;
@@ -97,9 +99,7 @@ export const Contact = () => {
             )
             .then((response) => {
               console.log(response.data);
-              console.log(response.status, response.data.token);
               setSuccessMessage("Thanks, " + name + "!");
-              console.log("set success 1");
               resetForm();
 
               setTimeout(() => {
@@ -118,72 +118,68 @@ export const Contact = () => {
   };
 
   return (
-    <Container>
+    <Box
+      display="flex"
+      marginTop="4rem"
+      marginBottom="4rem"
+      paddingX={isMobile ? "4rem" : "32rem"}
+      flexDirection={"column"}
+      alignItems="center"
+      gap="24px"
+    >
       <Box
-        marginX="4rem"
-        marginTop="2rem"
-        marginBottom="4rem"
-        padding="4rem"
         sx={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "space-between",
-          alignItems: "center",
+          fontWeight: 700,
+          fontSize: isMobile ? "32px" : "64px",
+          color: theme.palette.primary.main,
         }}
       >
-        <Box display="flex" flexDirection={"column"} gap="24px">
-          <Box
-            sx={{
-              fontWeight: 700,
-              fontSize: "4rem",
-              color: theme.palette.primary.main,
-            }}
-          >
-            Let's connect!
-          </Box>
-          <TextField
-            required
-            label="Name"
-            value={name}
-            error={!!nameError}
-            onChange={handleNameChange}
-            helperText={nameError}
-          />
-
-          <TextField
-            required
-            error={!!emailError}
-            value={email}
-            label="Email Address"
-            onChange={handleEmailChange}
-            helperText={emailError}
-          />
-
-          <TextField
-            multiline
-            label="Message"
-            value={message}
-            onChange={handleMessageChange}
-          />
-          <SLoadingButton
-            loading={loading}
-            disableRipple
-            onClick={handleSubmit}
-            startIcon={
-              <SendIcon
-                sx={{
-                  color: theme.palette.primary.main,
-                  height: "12px",
-                }}
-              />
-            }
-            loadingPosition="start"
-          >
-            <span>Send</span>
-          </SLoadingButton>
-          {successMessage && <Typography>{successMessage}</Typography>}
-        </Box>
+        Let's connect!
       </Box>
-    </Container>
+      <TextField
+        fullWidth
+        required
+        label="Name"
+        value={name}
+        error={!!nameError}
+        onChange={handleNameChange}
+        helperText={nameError}
+      />
+
+      <TextField
+        fullWidth
+        required
+        error={!!emailError}
+        value={email}
+        label="Email Address"
+        onChange={handleEmailChange}
+        helperText={emailError}
+      />
+
+      <TextField
+        fullWidth
+        multiline
+        label="Message"
+        value={message}
+        onChange={handleMessageChange}
+      />
+      <SLoadingButton
+        loading={loading}
+        disableRipple
+        onClick={handleSubmit}
+        startIcon={
+          <SendIcon
+            sx={{
+              color: theme.palette.primary.main,
+              height: "12px",
+            }}
+          />
+        }
+        loadingPosition="start"
+      >
+        <span>Send</span>
+      </SLoadingButton>
+      {successMessage && <Typography>{successMessage}</Typography>}
+    </Box>
   );
 };
