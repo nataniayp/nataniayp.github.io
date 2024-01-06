@@ -1,36 +1,50 @@
-import React from "react";
-import { Box, Container, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
+import styled, { css } from "styled-components";
+import { useNavigate } from "react-router-dom";
+
+const STypography = styled(Typography)<{
+  textcolor?: string;
+  islink?: boolean;
+}>`
+  ${(props) => css`
+    color: ${props.textcolor || "black"};
+    text-decoration: none;
+    font-weight: 600;
+    &:hover {
+      cursor: ${props.islink ? "pointer" : "auto"};
+      text-decoration: ${props.islink ? "underline" : "none"};
+    }
+  `}
+`;
 
 export const Blog = () => {
   const theme = useTheme();
+  const navigate = useNavigate();
   return (
-    <Container>
+    <Box paddingX="270px" paddingY="40px">
       <Box
-        marginX="4rem"
-        marginTop="2rem"
-        marginBottom="4rem"
-        padding="4rem"
-        sx={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}
+        marginTop="26px"
+        display="flex"
+        flexDirection={"row"}
+        justifyContent={"center"}
       >
-        <Box>
-          <Box
-            sx={{
-              fontWeight: 700,
-              fontSize: "4rem",
-              color: theme.palette.primary.main,
-            }}
-          >
-            Hi, I am Natania.
-          </Box>
-          <Typography>This Blog page is still work in progress.</Typography>
-        </Box>
+        <STypography
+          textcolor={theme.palette.secondary.main}
+          islink={false}
+          fontSize="32px"
+        >
+          Play&nbsp;
+        </STypography>
+        <STypography
+          textcolor={theme.palette.secondary.main}
+          onClick={() => navigate("/blog/ttt")}
+          islink={true}
+          fontSize="32px"
+        >
+          Tic-Tac-Toe
+        </STypography>
       </Box>
-    </Container>
+    </Box>
   );
 };

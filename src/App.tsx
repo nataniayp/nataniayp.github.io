@@ -7,6 +7,7 @@ import { NavBar } from "./components/NavBar";
 import { Portfolio } from "./pages/Portfolio";
 import { Blog } from "./pages/Blog";
 import { Contact } from "./pages/Contact";
+import { Tictactoe } from "./pages/Tictactoe";
 
 const theme = createTheme({
   palette: {
@@ -29,6 +30,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/portfolio" element={<Portfolio />} />
           <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/ttt" element={<Tictactoe />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>
       </Router>
